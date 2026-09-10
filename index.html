@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midhun Raj M | Portfolio</title>
+    <style>
+        :root {
+            /* Grey and Green Color Palette */
+            --bg-color: #f4f5f7;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --accent-green: #2e8b57; 
+            --accent-green-hover: #1f633d;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        /* Fluid typography for responsiveness */
+        h1 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        h2 {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+
+        .content-box {
+            background: var(--card-bg);
+            padding: clamp(1.5rem, 4vw, 3rem);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            border: 1px solid var(--border-color);
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        h3 {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        /* CSS Grid for responsive project cards */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .project-card {
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: var(--bg-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(46, 139, 87, 0.15);
+            border-color: var(--accent-green);
+        }
+
+        .project-card h4 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .project-card p {
+            margin: 0 0 1.5rem 0;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        a {
+            color: var(--accent-green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-green-hover);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Midhun Raj M</h1>
+            <h2>Software Developer</h2>
+        </header>
+
+        <div class="content-box">
+            <section>
+                <p>Welcome to my personal workspace. I specialize in backend development, focusing on connecting robust SQL databases to ASP.NET Core applications and navigating Azure web services.</p>
+                
+                <p>Outside of my multi-screen setup, I spend my time exploring creative digital photo editing, writing short film scripts, trekking, and playing local cricket matches.</p>
+            </section>
+
+            <section>
+                <h3>Projects</h3>
+                
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h4>Wedding Website</h4>
+                        <p>A custom front-end interface built to share details and RSVP information for upcoming celebrations.</p>
+                        <a href="/wedding">View Live Site &rarr;</a>
+                    </div>
+
+                    <div class="project-card">
+                        <h4>Backend Architecture</h4>
+                        <p>Demonstrating .NET Core API integrations and secure local database management.</p>
+                        <a href="#">Details Coming Soon &rarr;</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
