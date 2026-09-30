@@ -3,164 +3,547 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Midhun Raj M | Portfolio</title>
+    <title>Midhun Moorthiyedam | Portfolio</title>
+    <meta name="description" content="Portfolio of Midhun Moorthiyedam, Software Development Engineer and independent filmmaker based in Kerala.">
+    <meta name="author" content="Midhun Moorthiyedam">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            /* Grey and Green Color Palette */
-            --bg-color: #f4f5f7;
-            --text-main: #333333;
-            --text-muted: #666666;
-            --accent-green: #2e8b57; 
-            --accent-green-hover: #1f633d;
-            --card-bg: #ffffff;
-            --border-color: #e2e8f0;
+            /* Palette */
+            --bg-primary: #242423;
+            --bg-secondary: #333533;
+            --text-primary: #e8eddf;
+            --text-secondary: #cfdbd5;
+            --accent: #f5cb5c;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-primary);
             line-height: 1.6;
-            color: var(--text-main);
-            background-color: var(--bg-color);
-            padding: 2rem 1rem;
+            overflow-x: hidden;
+            position: relative;
+            background-color: var(--bg-primary); /* Fallback */
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+        /* Canvas Background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
         }
 
-        header {
-            margin-bottom: 3rem;
-            text-align: center;
-            padding: 0 1rem;
+        /* Selection */
+        ::selection {
+            background-color: var(--accent);
+            color: var(--bg-primary);
         }
 
-        /* Fluid typography for responsiveness */
-        h1 {
-            font-size: clamp(2rem, 5vw, 2.5rem);
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-secondary); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
 
-        h2 {
-            font-size: clamp(1.1rem, 3vw, 1.3rem);
-            color: var(--accent-green);
-            font-weight: 500;
-        }
-
-        .content-box {
-            background: var(--card-bg);
-            padding: clamp(1.5rem, 4vw, 3rem);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
-            border: 1px solid var(--border-color);
-        }
-
-        p {
-            margin-bottom: 1.2rem;
-            color: var(--text-muted);
-        }
-
-        h3 {
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            margin-top: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-main);
-        }
-
-        /* CSS Grid for responsive project cards */
-        .project-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 600px) {
-            .project-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .project-card {
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            background: var(--bg-color);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        /* Navigation */
+        nav {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
         }
 
-        .project-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(46, 139, 87, 0.15);
-            border-color: var(--accent-green);
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: var(--transition);
         }
 
-        .project-card h4 {
-            margin: 0 0 0.75rem 0;
+        .logo span { color: var(--accent); }
+        .logo:hover { transform: scale(1.05); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            z-index: 2;
+            animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .greeting {
+            color: var(--accent);
             font-size: 1.1rem;
-            color: var(--text-main);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid rgba(245, 203, 92, 0.3);
+            border-radius: 50px;
+            background: rgba(245, 203, 92, 0.1);
+            backdrop-filter: blur(5px);
         }
 
-        .project-card p {
-            margin: 0 0 1.5rem 0;
-            font-size: 0.95rem;
-            flex-grow: 1;
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            letter-spacing: -1px;
         }
 
-        a {
-            color: var(--accent-green);
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-secondary);
+            max-width: 750px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background-color: var(--accent);
+            color: var(--bg-primary);
             text-decoration: none;
             font-weight: 600;
-            display: inline-block;
-            transition: color 0.2s ease;
+            border-radius: 50px;
+            transition: var(--transition);
+            font-size: 1.1rem;
+            border: 2px solid var(--accent);
+            box-shadow: 0 10px 30px -10px rgba(245, 203, 92, 0.5);
         }
 
-        a:hover {
-            color: var(--accent-green-hover);
+        .btn:hover {
+            background-color: rgba(245, 203, 92, 0.1);
+            color: var(--accent);
+            box-shadow: 0 15px 35px -10px rgba(245, 203, 92, 0.6);
+            transform: translateY(-3px);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Container & Glassmorphism Cards */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 40px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .container:hover .section-title::after { width: 100%; }
+
+        .glass-card {
+            background: rgba(51, 53, 51, 0.35); /* #333533 transparent */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(232, 237, 223, 0.08); /* #e8eddf transparent */
+            border-radius: 24px;
+            padding: 3rem;
+            transition: var(--transition);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(245, 203, 92, 0.3);
+            transform: translateY(-5px);
+            background: rgba(51, 53, 51, 0.6);
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* Experience Section */
+        .exp-item { margin-bottom: 2rem; }
+        .exp-item:last-child { margin-bottom: 0; }
+        .exp-item h3 { color: var(--accent); font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .exp-item h4 { color: var(--text-primary); font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .exp-item p { color: var(--text-secondary); font-weight: 300; }
+
+        /* Filmography Grid */
+        .film-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            padding: 2.5rem;
+        }
+        
+        .film-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .film-card:hover::before { transform: scaleX(1); }
+        
+        .film-card h3 { font-size: 1.6rem; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .film-card .role { color: var(--accent); font-weight: 600; font-size: 1rem; margin-bottom: 1rem; }
+        .film-card .details { color: var(--text-secondary); font-weight: 300; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1; }
+        .film-card .details strong { color: var(--text-primary); font-weight: 600; }
+        
+        .link-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            background: rgba(232, 237, 223, 0.05);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(232, 237, 223, 0.1);
+        }
+        
+        .project-link:hover { color: var(--bg-primary); background: var(--accent); border-color: var(--accent); }
+        .project-link svg { transition: transform 0.3s ease; }
+        .project-link:hover svg { transform: translateX(3px); }
+
+        /* Collaborators & Links */
+        .tags-container { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+        .tag {
+            background: rgba(245, 203, 92, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: 1px solid rgba(245, 203, 92, 0.2);
+            transition: var(--transition);
+        }
+        .tag:hover { background: var(--accent); color: var(--bg-primary); }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 5%;
+            border-top: 1px solid rgba(232, 237, 223, 0.05);
+            position: relative;
+            z-index: 10;
+        }
+        footer p { color: var(--text-secondary); font-weight: 300; font-size: 0.95rem; }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero { min-height: 75vh; }
+            .container { padding: 4rem 5%; }
+            .glass-card, .film-card { padding: 2rem; }
+            .hero h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Midhun Raj M</h1>
-            <h2>Software Developer</h2>
-        </header>
+    <!-- Animated background canvas -->
+    <canvas id="bg-canvas"></canvas>
+    
+    <nav>
+        <a href="#" class="logo">M<span>.</span></a>
+        <div class="nav-links">
+            <a href="#experience">Experience</a>
+            <a href="#filmography">Filmography</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
-        <div class="content-box">
-            <section>
-                <p>Welcome to my personal workspace. I specialize in backend development, focusing on connecting robust SQL databases to ASP.NET Core applications and navigating Azure web services.</p>
-                
-                <p>Outside of my multi-screen setup, I spend my time exploring creative digital photo editing, writing short film scripts, trekking, and playing local cricket matches.</p>
-            </section>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="greeting">Hello, I'm</span>
+                <h1>Midhun Moorthiyedam</h1>
+                <p>An independent filmmaker and Software Development Engineer based in Kerala, India. Actively balancing a technical career in the corporate IT sector with a prolific creative presence in the Malayalam indie digital cinema circuit.</p>
+                <a href="#filmography" class="btn">View My Work</a>
+            </div>
+        </section>
 
-            <section>
-                <h3>Projects</h3>
-                
-                <div class="project-grid">
-                    <div class="project-card">
-                        <h4>Wedding Website</h4>
-                        <p>A custom front-end interface built to share details and RSVP information for upcoming celebrations.</p>
-                        <a href="/WeddingInvitation">View Live Site &rarr;</a>
+        <section id="experience" class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="glass-card">
+                <div class="exp-item">
+                    <h3>Software Development Engineer (SDE)</h3>
+                    <h4>Gallagher Global</h4>
+                    <p>Focusing on Software Engineering and Full-Stack Development, leveraging robust backend architectures and cloud technologies.</p>
+                </div>
+                <hr style="border: 0; border-top: 1px solid rgba(232, 237, 223, 0.1); margin: 2rem 0;">
+                <div class="exp-item">
+                    <h3>Co-Founder</h3>
+                    <h4>Tritote</h4>
+                    <p>Driving startup initiatives and delivering technology service solutions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="filmography" class="container">
+            <h2 class="section-title">Filmography & Creative Works</h2>
+            <div class="grid-2">
+                <!-- Block -->
+                <div class="glass-card film-card">
+                    <h3>Block (2020)</h3>
+                    <div class="role">Director & Editor</div>
+                    <div class="details">
+                        <p><strong>Story:</strong> Sudhakaran Moorthiyedam</p>
+                        <p><strong>Screenplay:</strong> Nikhilesh Moorthiyedam</p>
+                        <p><strong>Recognition:</strong> KSFF 2020 Official Selection ('Life' Theme)</p>
                     </div>
-
-                    <div class="project-card">
-                        <h4>Backend Architecture</h4>
-                        <p>Demonstrating .NET Core API integrations and secure local database management.</p>
-                        <a href="#">Details Coming Soon &rarr;</a>
+                    <div class="link-group">
+                        <a href="https://youtu.be/sm59Ol4YST0" target="_blank" class="project-link">
+                            Watch on Kaumudy 
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
                     </div>
                 </div>
-            </section>
-        </div>
-    </div>
+
+                <!-- Sa Sa Ma Ma -->
+                <div class="glass-card film-card">
+                    <h3>Sa Sa Ma Ma (2024)</h3>
+                    <div class="role">Chief Associate Director</div>
+                    <div class="details">
+                        <p><strong>Director:</strong> Nikhilesh Moorthiyedam</p>
+                        <p>An upcoming release featured by Raging Reels.</p>
+                    </div>
+                    <div class="link-group">
+                        <a href="https://www.youtube.com/channel/UCVLwBT5nJyGFglHPOE1m2iw" target="_blank" class="project-link">
+                            Raging Reels 
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Aaranyakaandam -->
+                <div class="glass-card film-card">
+                    <h3>Aaranyakaandam (2020)</h3>
+                    <div class="role">Director</div>
+                    <div class="details">
+                        <p><strong>Production:</strong> Independent Crew</p>
+                        <p>A gripping narrative short film developed independently and streamed via Raging Reels.</p>
+                    </div>
+                    <div class="link-group">
+                        <a href="https://www.youtube.com/channel/UCVLwBT5nJyGFglHPOE1m2iw" target="_blank" class="project-link">
+                            Raging Reels 
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Chola -->
+                <div class="glass-card film-card">
+                    <h3>Chola</h3>
+                    <div class="role">Co-Director</div>
+                    <div class="details">
+                        <p>Co-directed short film representing core storytelling values, released on the primary media hub.</p>
+                    </div>
+                    <div class="link-group">
+                        <a href="https://www.youtube.com/channel/UCVLwBT5nJyGFglHPOE1m2iw" target="_blank" class="project-link">
+                            Raging Reels 
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2 class="section-title">Collaborators & Hubs</h2>
+            <div class="glass-card">
+                <h3 style="color: var(--accent); margin-bottom: 1rem; font-size: 1.3rem;">Core Collaborators</h3>
+                <div class="tags-container" style="margin-bottom: 3rem;">
+                    <span class="tag">Nikhilesh Moorthiyedam</span>
+                    <span class="tag">Sudhakaran Moorthiyedam</span>
+                    <span class="tag">Abhishek Moorthiyedam</span>
+                    <span class="tag">Raging Reels Motion Pictures</span>
+                </div>
+                
+                <h3 style="color: var(--accent); margin-bottom: 1rem; font-size: 1.3rem;">Digital Hubs</h3>
+                <div class="link-group">
+                    <a href="https://www.instagram.com/m_dh_n.raj/" target="_blank" class="project-link">
+                        Instagram @m_dh_n.raj 
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                    <a href="https://www.instagram.com/tritote.in" target="_blank" class="project-link">
+                        Tritote @tritote.in 
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCVLwBT5nJyGFglHPOE1m2iw" target="_blank" class="project-link">
+                        Raging Reels YouTube 
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Midhun Moorthiyedam. All rights reserved.</p>
+    </footer>
+
+    <!-- Animated Dotted Waves Background Script -->
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+
+        function init() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        window.addEventListener('resize', init);
+        init();
+
+        let time = 0;
+        const spacing = 45; // Space between dots
+        
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Draw base dark background
+            ctx.fillStyle = '#242423';
+            ctx.fillRect(0, 0, width, height);
+            
+            time += 0.025; // Speed of animation
+            
+            const cols = Math.ceil(width / spacing) + 2;
+            const rows = Math.ceil(height / spacing) + 2;
+            
+            for(let i = -1; i < cols; i++) {
+                for(let j = -1; j < rows; j++) {
+                    let cx = i * spacing;
+                    let cy = j * spacing;
+                    
+                    // Add subtle floating effect based on time
+                    let xOffset = Math.sin(time + cy * 0.05) * 15;
+                    let yOffset = Math.cos(time + cx * 0.05) * 15;
+                    
+                    let x = cx + xOffset;
+                    let y = cy + yOffset;
+                    
+                    // Determine wave value for color and size
+                    let waveVal = Math.sin(cx * 0.005 + time) + Math.cos(cy * 0.005 + time);
+                    
+                    let size = Math.abs(waveVal) * 1.5 + 1.2; // Size pulses between 1.2 and ~2.7
+                    let opacity = Math.abs(waveVal) * 0.4 + 0.15; // Opacity between 0.15 and ~0.55
+                    
+                    // Assign colors from theme palette based on wave position
+                    // Palette: #cfdbd5 (greenish), #e8eddf (light), #f5cb5c (yellow)
+                    if(waveVal > 0.5) {
+                        ctx.fillStyle = `rgba(245, 203, 92, ${opacity})`; // Yellow Accent (#f5cb5c)
+                    } else if (waveVal < -0.5) {
+                        ctx.fillStyle = `rgba(232, 237, 223, ${opacity})`; // Off-white (#e8eddf)
+                    } else {
+                        ctx.fillStyle = `rgba(207, 219, 213, ${opacity})`; // Grey-green (#cfdbd5)
+                    }
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            requestAnimationFrame(draw);
+        }
+        
+        draw();
+    </script>
 </body>
 </html>
