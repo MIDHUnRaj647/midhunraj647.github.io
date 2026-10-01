@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software & Digital Products — Midhun Moorthiyedam</title>
+    <meta name="description"
+        content="Independent software engineer building custom web applications, business software, digital products, APIs and AI-powered applications.">
+    <meta name="author" content="Midhun Moorthiyedam">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/style.css">
+    <style>
+        /* Techy Vibe Overrides */
+        :root {
+            --bg-primary: #020502;
+            --bg-secondary: #050f08;
+            --text-primary: #e6f0e6;
+            --text-secondary: #809980;
+            --accent: #55a630;
+            --accent-glow: #aacc00;
+            --tech-font: 'Fira Code', 'Courier New', monospace;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+        }
+
+        .pixel-arrows {
+            display: inline-flex;
+            justify-content: center;
+            margin-top: 4rem;
+            animation: arrow-bounce 2s infinite;
+        }
+
+        .pixel-arrows svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--accent-glow);
+            filter: drop-shadow(0 0 8px var(--accent-glow));
+        }
+
+        @keyframes arrow-bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(10px); }
+            60% { transform: translateY(5px); }
+        }
+
+        /* Override base navigation links */
+        .nav-links a:hover {
+            color: var(--accent-glow);
+            text-shadow: 0 0 8px rgba(85, 166, 48, 0.4);
+        }
+        .logo span {
+            color: var(--accent-glow);
+        }
+
+        /* Software Page Specific Styles */
+        .software-hero {
+            text-align: center;
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 6rem;
+            padding-bottom: 2rem;
+            position: relative;
+        }
+        
+        .software-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .software-hero h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1.5px;
+            text-transform: uppercase;
+        }
+
+        .software-hero .descriptor {
+            color: var(--accent);
+            font-family: var(--tech-font);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            display: inline-block;
+            border: 1px solid rgba(85, 166, 48, 0.3);
+            padding: 0.5rem 1rem;
+            background: rgba(85, 166, 48, 0.05);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .primary-cta {
+            background: transparent;
+            color: var(--accent-glow);
+            border: 1px solid var(--accent-glow);
+            padding: 1rem 2.5rem;
+            font-family: var(--tech-font);
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--accent-glow);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .primary-cta:hover {
+            color: var(--bg-primary);
+            box-shadow: 0 0 20px rgba(85, 166, 48, 0.3);
+        }
+
+        .primary-cta:hover::before {
+            transform: scaleX(1);
+        }
+
+        .secondary-cta {
+            color: var(--text-secondary);
+            font-family: var(--tech-font);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .secondary-cta:hover {
+            color: var(--accent-glow);
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .capability-card {
+            padding: 2rem;
+            background: rgba(0, 127, 95, 0.03);
+            border: 1px solid rgba(0, 127, 95, 0.2);
+            border-radius: 4px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .capability-card::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px;
+            width: 10px; height: 10px;
+            border-top: 2px solid var(--accent);
+            border-left: 2px solid var(--accent);
+            transition: var(--transition);
+        }
+        .capability-card::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 10px; height: 10px;
+            border-bottom: 2px solid var(--accent);
+            border-right: 2px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .capability-card:hover {
+            border-color: rgba(85, 166, 48, 0.4);
+            background: rgba(0, 127, 95, 0.08);
+            box-shadow: 0 0 15px rgba(0, 127, 95, 0.1);
+        }
+        .capability-card:hover::before, .capability-card:hover::after {
+            width: 100%; height: 100%;
+            border-color: var(--accent-glow);
+            opacity: 0.2;
+        }
+
+        .capability-num {
+            color: var(--accent-glow);
+            font-family: var(--tech-font);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .capability-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+
+        .capability-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .capability-tags {
+            font-family: var(--tech-font);
+            font-size: 0.75rem;
+            color: var(--accent);
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        .process-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 2rem;
+            padding: 1.5rem 2rem;
+            background: rgba(0, 127, 95, 0.02);
+            border: 1px solid rgba(0, 127, 95, 0.1);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .process-step:hover {
+            border-color: var(--accent);
+            background: rgba(0, 127, 95, 0.05);
+        }
+
+        .process-num {
+            font-family: var(--tech-font);
+            font-size: 1.2rem;
+            color: var(--accent-glow);
+            min-width: 40px;
+        }
+
+        .process-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .process-content p {
+            color: var(--text-secondary);
+            font-weight: 300;
+            font-size: 0.95rem;
+        }
+
+        .work-showcase {
+            display: flex;
+            flex-direction: column;
+            gap: 5rem;
+        }
+
+        .work-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .work-item:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+            direction: rtl;
+        }
+
+        .work-item:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .work-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: #020502;
+            border: 1px solid rgba(85, 166, 48, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .work-image::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 127, 95, 0.05),
+                rgba(0, 127, 95, 0.05) 1px,
+                transparent 1px,
+                transparent 4px
+            );
+            pointer-events: none;
+        }
+
+        .work-meta {
+            color: var(--accent-glow);
+            font-family: var(--tech-font);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .work-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .work-desc {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .work-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .detail-block h4 {
+            font-family: var(--tech-font);
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-block p {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            border-top: 1px dashed rgba(85, 166, 48, 0.2);
+        }
+
+        .philosophy-item {
+            padding: 2.5rem 0;
+            border-bottom: 1px dashed rgba(85, 166, 48, 0.2);
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .philosophy-item h3 {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+
+        .philosophy-item p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .enquiry-form {
+            max-width: 600px;
+            margin: 4rem auto 0;
+            text-align: left;
+            background: rgba(0, 127, 95, 0.02);
+            border: 1px solid rgba(85, 166, 48, 0.3);
+            padding: 3rem;
+            position: relative;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: var(--tech-font);
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+        
+        .form-control {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(85, 166, 48, 0.2);
+            padding: 1rem;
+            color: var(--text-primary);
+            font-family: var(--tech-font);
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 10px rgba(85, 166, 48, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Techy specific animations */
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @media (max-width: 900px) {
+            .work-item, .work-item:nth-child(even) {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .philosophy-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 2rem 0;
+            }
+            .enquiry-form {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="no-scroll">
+    <!-- Aspect Ratio Splash Screen -->
+    <div id="splash-screen">
+        <div class="cinematic-bar top-bar" style="background-color: #020502;"></div>
+        <div class="cinematic-bar bottom-bar" style="background-color: #020502;"></div>
+        <div class="slit-text-container" style="backdrop-filter: blur(12px) brightness(0.4);">
+            <h2 class="slit-text" style="font-family: 'Fira Code', monospace; color: var(--accent);">INIT SOFTWARE_MODE<span class="cursor-blink">_</span></h2>
+        </div>
+    </div>
+
+    <!-- Animated background canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <nav>
+        <a href="../" class="logo">M<span style="color: var(--accent-glow);">.</span></a>
+        <div class="nav-controls">
+            <div class="nav-links">
+                <a href="../#experience">Experience</a>
+                <a href="../#filmography">Filmography</a>
+                <a href="../#repositories">Repositories</a>
+                <a href="../#contact">Contact</a>
+            </div>
+            
+            <div class="mode-toggle">
+                <a href="../index.html" class="toggle-btn">Portfolio</a>
+                <a href="#" class="toggle-btn active">Software</a>
+            </div>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="container software-hero reveal">
+            <div class="ambient-glow" style="width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(0, 127, 95, 0.15) 0%, rgba(2, 5, 2, 0) 70%);"></div>
+            <div class="software-hero-content">
+                <div class="descriptor">~/sys/independent-engineer --available</div>
+                <h1>DIGITAL<br>ALCHEMY</h1>
+                <p style="font-size: clamp(1.1rem, 2vw, 1.25rem); margin-bottom: 2rem; color: var(--text-secondary); font-family: var(--tech-font);">> I design and build thoughtful software for ideas, businesses and people.</p>
+                
+                <div class="cta-group">
+                    <a href="#enquiry" class="primary-cta">EXECUTE START_PROJECT</a>
+                    <a href="#what-i-build" class="secondary-cta">EXPLORE_MY_WORK()</a>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="#what-i-build" class="pixel-arrows" aria-label="Scroll down">
+                        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Top chevron -->
+                            <rect x="2" y="0" width="2" height="2"/>
+                            <rect x="12" y="0" width="2" height="2"/>
+                            <rect x="4" y="2" width="2" height="2"/>
+                            <rect x="10" y="2" width="2" height="2"/>
+                            <rect x="6" y="4" width="4" height="2"/>
+                            <!-- Bottom chevron -->
+                            <rect x="2" y="6" width="2" height="2"/>
+                            <rect x="12" y="6" width="2" height="2"/>
+                            <rect x="4" y="8" width="2" height="2"/>
+                            <rect x="10" y="8" width="2" height="2"/>
+                            <rect x="6" y="10" width="4" height="2"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHAT I CAN BUILD -->
+        <section id="what-i-build" class="container reveal">
+            <h2 class="section-title">WHAT I CAN BUILD</h2>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 700px; margin-bottom: 2rem; font-family: var(--tech-font);">// From simple websites to complex business applications, I build software around the problem that needs to be solved.</p>
+            
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <div class="capability-num">0x01</div>
+                    <h3>WEB APPLICATIONS</h3>
+                    <p>Custom applications designed around specific workflows.</p>
+                    <div class="capability-tags">[DASHBOARDS] [PORTALS] [SAAS] [MGMT_SYSTEMS]</div>
+                </div>
+                
+                <div class="capability-card">
+                    <div class="capability-num">0x02</div>
+                    <h3>BUSINESS APPLICATIONS</h3>
+                    <p>Replace spreadsheets and repetitive processes with purpose-built software.</p>
+                    <div class="capability-tags">[INVENTORY] [BILLING] [CRM] [AUTOMATION]</div>
+                </div>
+                
+                <div class="capability-card">
+                    <div class="capability-num">0x03</div>
+                    <h3>APIs & BACKEND SYSTEMS</h3>
+                    <p>Secure and scalable backend systems for applications and integrations.</p>
+                    <div class="capability-tags">[REST_APIS] [MICROSERVICES] [DATABASES] [AUTH]</div>
+                </div>
+                
+                <div class="capability-card">
+                    <div class="capability-num">0x04</div>
+                    <h3>E-COMMERCE & WEBSITES</h3>
+                    <p>From focused brand websites to complete online stores.</p>
+                    <div class="capability-tags">[CORPORATE] [LANDING_PAGES] [SHOPIFY] [CUSTOM]</div>
+                </div>
+                
+                <div class="capability-card">
+                    <div class="capability-num">0x05</div>
+                    <h3>AI-POWERED APPLICATIONS</h3>
+                    <p>Bring AI into practical products and workflows.</p>
+                    <div class="capability-tags">[AI_ASSISTANTS] [DOC_PROCESSING] [INTELLIGENT_SEARCH]</div>
+                </div>
+                
+                <div class="capability-card" style="background: rgba(85, 166, 48, 0.05); border-color: rgba(85, 166, 48, 0.3);">
+                    <div class="capability-num" style="color: var(--text-primary);">0x06</div>
+                    <h3 style="color: var(--accent-glow);">DON’T SEE WHAT YOU’RE LOOKING FOR?</h3>
+                    <p>Tell me what you’re trying to build. We can figure out the right solution together.</p>
+                    <a href="#enquiry" class="secondary-cta" style="margin-top: 1rem; color: var(--accent-glow);">TELL ME ABOUT YOUR IDEA -></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE PROCESS -->
+        <section class="container reveal">
+            <h2 class="section-title">PIPELINE &rarr; PRODUCT</h2>
+            <div class="process-container">
+                <div class="process-step">
+                    <div class="process-num">01</div>
+                    <div class="process-content">
+                        <h3>DISCOVER</h3>
+                        <p>Understand the idea, problem, users and requirements.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="process-num">02</div>
+                    <div class="process-content">
+                        <h3>DESIGN</h3>
+                        <p>Define the experience, architecture and technology.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="process-num">03</div>
+                    <div class="process-content">
+                        <h3>BUILD</h3>
+                        <p>Develop, integrate, test and refine.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="process-num">04</div>
+                    <div class="process-content">
+                        <h3>LAUNCH</h3>
+                        <p>Deploy, monitor and hand over the product.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="process-num">05</div>
+                    <div class="process-content">
+                        <h3>EVOLVE</h3>
+                        <p>Improve and expand the product as it grows.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SELECTED WORK -->
+        <section class="container reveal">
+            <h2 class="section-title">SELECTED WORK</h2>
+            <div class="work-showcase">
+                
+                <!-- Project 1 -->
+                <div class="work-item reveal">
+                    <div class="work-image">
+                        <div style="font-family: var(--tech-font); font-size: 1.5rem; color: rgba(85, 166, 48, 0.4); text-align: center;">
+                            {<br>&nbsp;&nbsp;"system": "SREERUDRAM",<br>&nbsp;&nbsp;"status": "online"<br>}
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <div class="work-meta">/ BUSINESS PLATFORM</div>
+                        <h3 class="work-title">SreeRudram-CodeBase</h3>
+                        <p class="work-desc">A comprehensive full-stack application leveraging a robust backend paired with a dynamic frontend, built to simplify complex business workflows.</p>
+                        
+                        <div class="work-details">
+                            <div class="detail-block">
+                                <h4>Challenge</h4>
+                                <p>Modernizing legacy business processes with a scalable, type-safe architecture.</p>
+                            </div>
+                            <div class="detail-block">
+                                <h4>Solution</h4>
+                                <p>A secure, responsive enterprise system with unified state management.</p>
+                            </div>
+                            <div class="detail-block">
+                                <h4>Technology</h4>
+                                <p>C# · .NET · TypeScript · SQL Server</p>
+                            </div>
+                            <div class="detail-block">
+                                <h4>My Role</h4>
+                                <p>Architecture · Full-Stack Development</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="work-item reveal">
+                    <div class="work-image">
+                        <div style="font-family: var(--tech-font); font-size: 1.5rem; color: rgba(85, 166, 48, 0.4); text-align: center;">
+                            user@host:~$ ./tracex --clean<br>
+                            > scanning environment...<br>
+                            > clearing footprints...
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <div class="work-meta">/ CYBERSECURITY TOOL</div>
+                        <h3 class="work-title">TraceXclean</h3>
+                        <p class="work-desc">A specialized command-line system analysis and cybersecurity simulation tool built for footprint analysis and automated cleanup routines.</p>
+                        
+                        <div class="work-details">
+                            <div class="detail-block">
+                                <h4>Challenge</h4>
+                                <p>Automating post-exploitation Linux environment analysis.</p>
+                            </div>
+                            <div class="detail-block">
+                                <h4>Solution</h4>
+                                <p>A lightweight, efficient CLI tool using modular Python scripts.</p>
+                            </div>
+                            <div class="detail-block">
+                                <h4>Technology</h4>
+                                <p>Python · Bash · Linux Shell</p>
+                            </div>
+                            <div class="detail-block">
+                                <h4>My Role</h4>
+                                <p>Backend Engineering · Collaboration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="work-item reveal">
+                    <div class="work-image">
+                        <div style="font-family: var(--tech-font); font-size: 1.5rem; color: rgba(85, 166, 48, 0.4); text-align: center;">
+                            &lt;TripCalculator /&gt;<br>
+                            <span style="font-size: 0.8rem; color: rgba(85, 166, 48, 0.2);">ng build --prod</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <div class="work-meta">/ WEB UTILITY</div>
+                        <h3 class="work-title">TheTripP_Angular</h3>
+                        <p class="work-desc">A lightweight, frontend-focused utility application designed as an interactive trip expense calculator.</p>
+                        
+                        <div class="work-details">
+                            <div class="detail-block">
+                                <h4>Challenge</h4>
+                                <p>Creating a seamless, intuitive UX for managing shared expenses.</p>
+                            </div>
+                            <div class="detail-block">
+                                <h4>Solution</h4>
+                                <p>A responsive single-page application built on Angular with dynamic bindings.</p>
+                            </div>
+                            <div class="detail-block">
+                                <h4>Technology</h4>
+                                <p>Angular · TypeScript · CSS</p>
+                            </div>
+                            <div class="detail-block">
+                                <h4>My Role</h4>
+                                <p>Frontend Architecture · UI/UX</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MORE THAN JUST CODE -->
+        <section class="container reveal">
+            <h2 class="section-title">MORE THAN JUST CODE</h2>
+            <div class="philosophy-grid">
+                <div class="philosophy-item">
+                    <h3>THOUGHTFUL ARCHITECTURE</h3>
+                    <p>Built with maintainability, security and scalability in mind.</p>
+                </div>
+                <div class="philosophy-item">
+                    <h3>CLEAN INTERFACES</h3>
+                    <p>Software should be functional and pleasant to use.</p>
+                </div>
+                <div class="philosophy-item">
+                    <h3>CLEAR COMMUNICATION</h3>
+                    <p>You don’t need to be technical to work with me.</p>
+                </div>
+                <div class="philosophy-item">
+                    <h3>END-TO-END DEVELOPMENT</h3>
+                    <p>From the initial idea to deployment.</p>
+                </div>
+                <div class="philosophy-item" style="border-bottom: none;">
+                    <h3>BUILT AROUND YOUR NEEDS</h3>
+                    <p>No unnecessary features. No one-size-fits-all solutions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE PERSON BEHIND THE CODE -->
+        <section class="container reveal">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 3rem; background: rgba(0, 127, 95, 0.02); border: 1px solid rgba(85, 166, 48, 0.2);">
+                <h2 style="font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; letter-spacing: 2px; text-transform: uppercase;">THE PERSON BEHIND THE CODE</h2>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Midhun Moorthiyedam</h3>
+                <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem; font-weight: 300;">
+                    A software engineer with experience building web applications, backend systems, integrations and digital products, while also working in filmmaking and creative projects.
+                </p>
+                <a href="../" class="secondary-cta" style="border-bottom: 1px dashed var(--accent);">
+                    [ MORE ABOUT ME ]
+                </a>
+            </div>
+        </section>
+
+        <!-- FINAL CTA / PROJECT ENQUIRY -->
+        <section id="enquiry" class="container reveal" style="padding-bottom: 6rem;">
+            <div style="text-align: center;">
+                <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem;">HAVE AN IDEA?</h2>
+                <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--accent-glow); margin-bottom: 2rem; font-family: var(--tech-font);">LET’S BUILD IT.</h2>
+                <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 3rem; font-family: var(--tech-font);">You bring the problem.<br>I’ll help build the solution.</p>
+                
+                <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; margin-bottom: 3rem; font-family: var(--tech-font);">
+                    <a href="mailto:midhunmoorthiyedam@gmail.com" class="secondary-cta">Email</a>
+                    <span style="color: var(--accent);">//</span>
+                    <a href="https://wa.me/m_dh_n.raj" target="_blank" class="secondary-cta">WhatsApp</a>
+                    <span style="color: var(--accent);">//</span>
+                    <a href="https://github.com/MIDHUnRaj647" target="_blank" class="secondary-cta">GitHub</a>
+                </div>
+            </div>
+
+            <!-- Enquiry Form -->
+            <div class="enquiry-form">
+                <!-- Using FormSubmit for forwarding emails without backend -->
+                <form action="https://formsubmit.co/midhunmoorthiyedam@gmail.com" method="POST">
+                    <!-- Config for FormSubmit -->
+                    <input type="hidden" name="_subject" value="New Project Enquiry from Software Page">
+                    <input type="hidden" name="_next" value="https://www.midhunmoorthiyedam.in/software/">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <div class="form-group">
+                        <label>> Name</label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>> Email</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>> Company / Organisation (optional)</label>
+                        <input type="text" class="form-control" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label>> Type of project</label>
+                        <select class="form-control" name="project_type" style="appearance: none;">
+                            <option value="Website" style="color: #fff; background: #020502;">Website</option>
+                            <option value="Web Application" style="color: #fff; background: #020502;">Web Application</option>
+                            <option value="Business Software" style="color: #fff; background: #020502;">Business Software</option>
+                            <option value="E-commerce" style="color: #fff; background: #020502;">E-commerce</option>
+                            <option value="API / Backend" style="color: #fff; background: #020502;">API / Backend</option>
+                            <option value="AI Application" style="color: #fff; background: #020502;">AI Application</option>
+                            <option value="Automation" style="color: #fff; background: #020502;">Automation</option>
+                            <option value="Other" style="color: #fff; background: #020502;">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>> Expected timeline</label>
+                        <input type="text" class="form-control" name="timeline">
+                    </div>
+                    <div class="form-group">
+                        <label>> What are you looking to build?</label>
+                        <textarea class="form-control" name="details" placeholder="Tell me about your idea, requirements, or the problem you're trying to solve." required></textarea>
+                    </div>
+                    <button type="submit" class="primary-cta" style="width: 100%; justify-content: center; margin-top: 1rem; cursor: pointer;">
+                        EXECUTE SEND_ENQUIRY
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer style="text-align: center; padding: 4rem 5%; border-top: 1px dashed rgba(85, 166, 48, 0.2); font-family: var(--tech-font);">
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">&copy; 2026 Midhun Moorthiyedam. SYSTEM_IDLE.</p>
+    </footer>
+
+    <!-- Techy Canvas Background Script -->
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+
+        function init() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        let lastWidth = window.innerWidth;
+        window.addEventListener('resize', () => {
+            if (window.innerWidth !== lastWidth) {
+                init();
+                lastWidth = window.innerWidth;
+            }
+        });
+        init();
+
+        let time = 0;
+        const spacing = 45; // Space between dots
+
+        // The techy palette
+        const palette = ["#007f5f","#2b9348","#55a630","#80b918","#aacc00","#bfd200","#d4d700","#dddf00","#eeef20","#ffff3f"];
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Draw base dark background
+            ctx.fillStyle = '#020502';
+            ctx.fillRect(0, 0, width, height);
+
+            time += 0.03; // Speed of animation
+
+            const cols = Math.ceil(width / spacing) + 2;
+            const rows = Math.ceil(height / spacing) + 2;
+
+            for (let i = -1; i < cols; i++) {
+                for (let j = -1; j < rows; j++) {
+                    let cx = i * spacing;
+                    let cy = j * spacing;
+
+                    // Techy structured movement instead of flowy floating
+                    let xOffset = Math.sin(time + cy * 0.1) * 5;
+                    let yOffset = Math.cos(time + cx * 0.1) * 5;
+
+                    let x = cx + xOffset;
+                    let y = cy + yOffset;
+
+                    // Determine wave value for color and size
+                    let waveVal = Math.sin(cx * 0.01 + time) + Math.cos(cy * 0.01 + time);
+
+                    // Matrix-like binary or dot
+                    let isDot = Math.random() > 0.95;
+
+                    let size = Math.abs(waveVal) * 1.5 + 0.8;
+                    let opacity = Math.abs(waveVal) * 0.4 + 0.05;
+
+                    // Map waveVal to palette index (0 to 9)
+                    let normalizedWave = (Math.sin(cx * 0.005 - time) + 1) / 2; // 0 to 1
+                    let colorIndex = Math.floor(normalizedWave * palette.length);
+                    if (colorIndex >= palette.length) colorIndex = palette.length - 1;
+                    if (colorIndex < 0) colorIndex = 0;
+
+                    ctx.fillStyle = palette[colorIndex];
+                    ctx.globalAlpha = opacity;
+
+                    if (isDot && Math.random() > 0.8) {
+                        // Occasionally draw a tiny binary digit or square
+                        ctx.font = "8px 'Fira Code', monospace";
+                        ctx.fillText(Math.random() > 0.5 ? "1" : "0", x, y);
+                    } else {
+                        // Draw sharp techy rects instead of circles
+                        ctx.fillRect(x - size/2, y - size/2, size, size);
+                    }
+                    ctx.globalAlpha = 1.0;
+                }
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+
+        // Aspect Ratio Splash Screen Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const splash = document.getElementById('splash-screen');
+            const body = document.body;
+
+            setTimeout(() => {
+                if (splash) splash.classList.add('open-slit');
+            }, 600);
+
+            setTimeout(() => {
+                if (splash) {
+                    splash.classList.add('reveal-all');
+                    body.classList.remove('no-scroll');
+                    setTimeout(() => {
+                        splash.remove();
+                    }, 1500);
+                }
+            }, 2500); 
+        });
+
+        // Scroll Reveal Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+
+            // Mobile Menu
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+            if (mobileMenu) {
+                mobileMenu.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                });
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
